@@ -1,4 +1,5 @@
 import PySimpleGUI as sg
+from class_adherent import Adherent
 
 sg.theme('DarkTeal9') 
  
@@ -65,14 +66,49 @@ layout = [
 
 window = sg.Window('Gestion adhérents', layout,size=(700, 450))
 
+def add_adherents():
+  nom = values['nom'] 
+  prenom = values['prenom']
+  telephone = values['telephone']
+  email = values['email']
+  adherent=Adherent(nom, prenom, telephone, email)
+  ad=[nom,prenom,telephone,email]
+  adherents.append(ad)
+  window['adherents'].update(adherents)
+
+
+def supprimer_adherent(nom, prenom):
+  for adherent in adherents:
+    if adherent[0] == nom and adherent[1] == prenom:
+      adherents.remove(adherent)
+      window['adherents'].update(adherents)
+      break 
+
 while True:
     event, values = window.read()
     
     if event == sg.WIN_CLOSED:
         break
 
-    # Traiter les actions ici   
+    # Ajouter un adherent    
+    if event=="Ajouter":
+      add_adherents()
+    
+    #Actualiser la liste
+    if event == "Actualiser":
+       window['adherents'].update(adherents)
+    
+    #Supprimer un adherent de la liste
+    if event=="Supprimer":
+      index = values["adherents"][0]
+      ad=adherents[index]
+      nom=ad[0]
+      prenom=ad[1]
+      supprimer_adherent(nom,prenom)
+      # Mettre à jour l'affichage
+      window["adherents"].update(adherents)
+      #adherents.pop(index)
+      #window["adherents"].update(adherents) 
 
 window.close()
-
 
