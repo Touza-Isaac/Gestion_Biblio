@@ -92,8 +92,10 @@ def GestionAdherent():
     
     if existing_adherent:
         # Mettre à jour les autres informations
-        c.execute("UPDATE adherents SET telephone=?, email=? WHERE nom=? AND prenom=?",
-                  (telephone, email, nom, prenom))
+         # Mettre à jour les autres informations
+        c.execute("UPDATE adherents SET nom=?, prenom=?, telephone=?, email=? WHERE (nom=? AND prenom=?) OR (telephone=? AND email=?)",
+                  (nom, prenom, telephone, email, nom, prenom, telephone, email))
+
     else:
         # Insérer les informations de l'adhérent dans la table
         c.execute("INSERT INTO adherents (nom, prenom, telephone, email) VALUES (?, ?, ?, ?)",
