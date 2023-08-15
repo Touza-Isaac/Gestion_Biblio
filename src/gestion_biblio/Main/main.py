@@ -1,9 +1,9 @@
 # main.py
-
 from menu import afficher_menu_gui, RetourMenu
 import PySimpleGUI as sg
 import subprocess
 from Gestion_Adherents import GestionAdherent
+from Login import AddUSer, Connexion
 
 def Femer():
     layout = [[sg.Text('Voulez vous fermer la fenêtre ?')],
@@ -18,14 +18,18 @@ def Femer():
         
 
 if __name__ == "__main__":
-
+    
+    Connexion()
+    
     choix = RetourMenu()
     print(choix)
     
     if choix=="Quitter":
         Femer()   
      
-    if choix=="Gestion des Adherents":
-        GestionAdherent()    
+    if choix=="Gestion des \n Adherents":
+        GestionAdherent()
+    if choix=="Ajouter un \n utilisateur":
+        AddUSer()    
    
 

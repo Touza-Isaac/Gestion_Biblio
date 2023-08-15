@@ -3,31 +3,38 @@ import PySimpleGUI as sg
 def afficher_menu_gui():
 
     sg.theme('DarkTeal9') 
-    button_size = (22, 5)
+    button_size = (16, 4)
 
     layout = [
-        [sg.Text('Application de Gestion de Bibliothèque', font=('Arial', 25, 'bold'))],
+        [sg.Text('Application de Gestion de Bibliothèque',auto_size_text=True, font=('Arial', 25, 'bold'))],
+        [sg.Text('')], 
         [sg.Text('Faites un choix :', font=('Arial', 20, 'bold'))],
         [sg.Text('')], # Ligne vide
         [sg.HorizontalSeparator()],
         [sg.Text('')], # Ligne vide
         [
             sg.Button(
-                'Gestion des Adherents', 
+                'Gestion des \n Adherents', 
                 size=button_size,
                 font=('Arial', 12, 'bold'),
                 button_color="green"),
             
             sg.Button(
-                'Gestion des Documents', 
+                'Gestion des \n  Documents', 
                 size=button_size,
                 font=('Arial', 12, 'bold'),
                 button_color="fuchsia"),
             
             sg.Button(
-                'Gestions des Emprunts', 
+                'Gestions des \n  Emprunts', 
                 size=button_size,font=('Arial', 12, 'bold'),
-                button_color="blue")
+                button_color="blue"),
+            
+             sg.Button(
+                'Ajouter un \n utilisateur', 
+                size=button_size,font=('Arial', 12, 'bold'),
+                button_color="gray")
+            
             ] 
        # [sg.Button('Quitter', size=button_size,button_color=('white','red'),font=('Arial', 12, 'bold'))]
     ]
